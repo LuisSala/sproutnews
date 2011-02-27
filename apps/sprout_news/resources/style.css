@@ -1,0 +1,19 @@
+div.custom-item-list-view h3.title {
+	font-size: 1.4em;
+	font-weight: bold;
+}
+
+div.custom-item-list-view {
+  padding-top: 4px;
+  border-bottom-color: black;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+div.custom-item-list-view div.standard{
+  background-color: #fff;
+}
+
+div.custom-item-list-view div.selected{
+  background-color: #ccc;
+}

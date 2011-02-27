@@ -24,6 +24,11 @@ SproutNews.main = function main() {
 
   // TODO: Set the content property on your primary controller
   // ex: SproutNews.contactsController.set('content',SproutNews.contacts);
+  
+  
+  var items = SproutNews.store.find(SproutNews.Item);
+  SproutNews.itemController.set('content', items)
+  
 
 } ;
 

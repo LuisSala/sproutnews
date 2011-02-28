@@ -26,7 +26,8 @@ SproutNews.main = function main() {
   // ex: SproutNews.contactsController.set('content',SproutNews.contacts);
   
   
-  var items = SproutNews.store.find(SproutNews.Item);
+  //var items = SproutNews.store.find(SproutNews.Item);
+  var items = SproutNews.store.find(SproutNews.ITEM_QUERY);
   SproutNews.itemController.set('content', items)
   
 

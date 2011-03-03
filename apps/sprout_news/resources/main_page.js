@@ -11,6 +11,9 @@ SproutNews.mainPage = SC.Page.design({
   // Add childViews to this pane for views to display immediately on page 
   // load.
   mainPane: SC.MainPane.design({
+	  
+	defaultResponder: SproutNews.DEFAULT,
+	
     childViews: 'topView centerView bottomView'.w(),
     
     topView: SC.ToolbarView.design({

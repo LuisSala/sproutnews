@@ -4,6 +4,6 @@
 # ===========================================================================
 
 # Add initial buildfile information here
-config :all, :required => :sproutcore
+config :all, :required => [:sproutcore, "sproutcore/animation"]
 
 proxy '/pipes/pipe.run', :to => 'pipes.yahoo.com'

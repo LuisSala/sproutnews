@@ -41,13 +41,15 @@ SproutNews.CustomItemListView = SC.ListItemView.extend(SC.ContentDisplay,
 		
 		// Detect left-to-right swipe
 		if (start < current) {
-			SC.Logger.log("Left > Right Drag Detected: Start "+ start +" End "+ current);
-			if (current-start > 60 & this.acceptDrags) {
-				SC.Logger.log("Drag Exceeded 60px");
+			SC.Logger.log("Left > Right Swipe Detected: Start "+ start +" End "+ current);
+			if (current-start > 60 && this.acceptDrags) {
+				this.acceptDrags = false;
+				SC.Logger.log("Swipe Exceeded 60px");
 				//this.parentView.select();
 				content=this.get("content");
-				this.acceptDrags = false;
 				SC.Logger.log("Content: "+ content.get("link"));
+				SC.Logger.log("Sending openArticle Action");
+				SproutNews.sendAction("openArticle", content.get("link"));
 			} // end if
 		} // end if
 		

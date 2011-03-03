@@ -14,11 +14,11 @@ SproutNews.itemController = SC.ArrayController.create(
 	SC.CollectionViewDelegate,
 /** @scope SproutNews.itemController.prototype */ {
 
-	openItem: function() {
-		var sel = this.get('selection');
+	/*openItem: function(url) {
+		//var sel = this.get('selection');
     
 		SC.Logger.log("itemController Selection:" + sel);
 		return YES;
-	}
+	}*/
 
 }) ;

@@ -38,7 +38,11 @@ SproutNews.mainPage = SC.Page.design({
     		contentValueKey: 'title',
     		exampleView: SproutNews.CustomItemListView, // use custom list view    		
     		rowHeight: 50,
-    		rowSpacing: 3
+    		rowSpacing: 3,
+    		isSelectable: YES,
+    		selectOnMouseDown: YES,
+    		target: "SproutNews.itemController",
+    		action: "openItem"
     	}) // end leftView.contentView
     	
     }), // end leftView

@@ -3,6 +3,10 @@ div.custom-item-list-view h3.title {
 	font-weight: bold;
 }
 
+.sc-list-item-view label {
+    display: none;
+}
+
 div.custom-item-list-view {
   padding-top: 4px;
   border-bottom-color: black;

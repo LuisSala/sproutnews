@@ -79,11 +79,11 @@ SproutNews.ItemDataSource = SC.DataSource.extend(
 		  
 		  var storeKeys = SC.SparseArray.array();
 		  
-		  console.log("didFetchFeed: count = "+ results.count)
+		  SC.Logger.log("didFetchFeed: count = "+ results.count)
 		  
 		  for (var i=0; i< results.count; i++) {
 			  var item = results.value.items[i];
-			  console.log("didFetchFeed: Item "+i+"-"+item.title);
+			  SC.Logger.log("didFetchFeed: Item "+i+"-"+item.title);
 			  storeKeys.pushObject(store.createRecord(SproutNews.Item,{
 				  title: item.title,
 				  link: item.link,

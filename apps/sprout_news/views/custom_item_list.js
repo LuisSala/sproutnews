@@ -10,10 +10,12 @@
 
   @extends SC.View
 */
-SproutNews.CustomItemListView = SC.View.extend(SC.ContentDisplay, 
+SproutNews.CustomItemListView = SC.ListItemView.extend(SC.ContentDisplay, 
 /** @scope SproutNews.CustomItemListView.prototype */ {
 
   // TODO: Add your own code here.
+	
+	acceptDrags: true,
 	
 	classNames: ['custom-item-list-view'],
 	
@@ -21,7 +23,56 @@ SproutNews.CustomItemListView = SC.View.extend(SC.ContentDisplay,
 	
 	displayProperties: 'isSelected'.w(),
 	
+	touchStart: function(touch) {
+		//sc_super();
+		this._touch={
+			start: {x: touch.pageX, y: touch.pageY},
+		}; // end _touch
+		return YES;
+	}, // end touchStart()
+	
+	touchesDragged: function(evt, touches) {
+		//sc_super();
+		var t=this._touch;
+		
+		console.log("Dragging");
+		var start = t.start.x;
+		var current = evt.pageX;
+		
+		// Detect left-to-right swipe
+		if (start < current) {
+			SC.Logger.log("Left > Right Drag Detected: Start "+ start +" End "+ current);
+			if (current-start > 60 & this.acceptDrags) {
+				SC.Logger.log("Drag Exceeded 60px");
+				//this.parentView.select();
+				content=this.get("content");
+				this.acceptDrags = false;
+				SC.Logger.log("Content: "+ content.get("link"));
+			} // end if
+		} // end if
+		
+	}, // end touchesDragged()
+	
+	touchEnd: function() {
+		//sc_super();
+		// Not Required
+	}, // end touchEnd()
+	
+	mouseDown: function(evt) {		
+		this.touchStart(evt);
+	}, // end mouseDown()
+	
+	mouseDragged: function(evt) {
+		this.touchesDragged(evt);
+	}, // end mouseDragged()
+	
+	mouseUp: function(evt) {
+		this.touchEnd(evt);
+	}, // end mouseUp()
+	
 	render: function(context, firstTime) {
+		sc_super();
+		
 		var content = this.get('content');
 		var title = content.get('title');
 		//var date = content.get('date').toFormattedString("mm/dd/YY");
@@ -44,7 +95,7 @@ SproutNews.CustomItemListView = SC.View.extend(SC.ContentDisplay,
 		context = context.begin('p').push('by %@ - %@'.fmt(author, date)).end(); // insert content into "bottom"
 		context = context.end(); // close "byline"
 		
-		sc_super();
+		
 	
 	} // end render
 	

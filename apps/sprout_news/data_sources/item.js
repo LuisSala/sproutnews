@@ -28,7 +28,7 @@ SproutNews.ItemDataSource = SC.DataSource.extend(
     // TODO: Add handlers to fetch data for specific queries.  
     // call store.dataSourceDidFetchQuery(query) when done.
 
-	SC.Request.getUrl('/pipes/pipe.run?_id=cfe79b93ed2e40b787f985c48c28826e&_render=json&url=http%3A%2F%2Fwww.wired.com').header({'Accept':'application/json'}).json().notify(this, 'didFetchFeed', store, query).send();
+	SC.Request.getUrl('/pipes/pipe.run?_id=cfe79b93ed2e40b787f985c48c28826e&_render=json&url=http%3A%2F%2Fwww.mashable.com').header({'Accept':'application/json'}).json().notify(this, 'didFetchFeed', store, query).send();
 	
     return YES ; // return YES if you handled the query
   },
@@ -84,15 +84,18 @@ SproutNews.ItemDataSource = SC.DataSource.extend(
 		  
 		  for (var i=0; i< count; i++) {
 			  var item = results.value.items[i];
+			  var url = item.link;
+		  	  if (item["feedburner:origLink"])
+		  		  url=item["feedburner:origLink"];
 			  SC.Logger.log("didFetchFeed: Item "+i+"-"+item.title);
 			  storeKeys.pushObject(store.createRecord(SproutNews.Item,{
 				  title: item.title,
-				  link: item.link,
+				  link: url,
 				  author: item['dc:creator'],
 				  date: item['y:published']['month']+'-'+item['y:published']['day']+'-'+item['y:published']['year'],
 				  description: item.description,
 				  content: "Content Not Assigned"
-			  }, item.link).storeKey);
+			  }, item.link+Math.floor(Math.random()*999999)).storeKey);
 		  } // end for		  
 		    
 		  store.loadQueryResults(query, storeKeys);

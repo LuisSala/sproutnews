@@ -25,9 +25,10 @@ SproutNews.newsBrowser = SC.ObjectController.create(
 		try {
 
 			  SC.Logger.log("newsBrowser.openItem() Opening ContentPanel for URL "+this.url);
-		      var itemPanel = SproutNews.ContentPanel.generateWithLink(this.url);
-		      itemPanel.append();
-		      this._openItemPanel = itemPanel;
+			  
+			  SC.Request.getUrl("/read?url="+this.url).notify(this, "didGetContent").send();
+			  
+		      
 		      
 		 } catch (e) {
 		      SC.Logger.log("newsBrowser.openItem() Exception: "+e);
@@ -40,5 +41,19 @@ SproutNews.newsBrowser = SC.ObjectController.create(
 		this._openItemPanel.remove();
 	    this._openItemPanel = null;
 	}, // end openItem()
-
+	
+	didGetContent: function(response) {
+		
+		var content = "<h1>Content Retrieval Error</h1>";
+		
+		if (SC.ok(response)) {	
+			content=response.get('body')+"";
+			SC.Logger.log("Got Content " + content);
+		} // end if
+		
+		var itemPanel = SproutNews.ContentPanel.generateWithContent(content);
+	      itemPanel.append();
+	    this._openItemPanel = itemPanel;
+		
+	} // end didGetContent
 }) ;

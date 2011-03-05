@@ -14,7 +14,7 @@ SproutNews.mainPage = SC.Page.design({
 	  
 	defaultResponder: SproutNews.DEFAULT,
 	
-    childViews: 'topView centerView bottomView'.w(),
+    childViews: 'topView centerView'.w(),
     
     topView: SC.ToolbarView.design({
       layout: { centerX: 0, centerY: 0, right:0, height:36 },
@@ -25,7 +25,7 @@ SproutNews.mainPage = SC.Page.design({
     	  layout: {centerY: 0, height: 24, left: 8, width: 200},
     	  controlSize: SC.LARGE_CONTROL_SIZE,
     	  fontWeight: SC.BOLD_WEIGHT,
-    	  value: 'Sprout News'
+    	  value: 'News Reader'
       }), // end lblTitle
       
       
@@ -33,7 +33,7 @@ SproutNews.mainPage = SC.Page.design({
     
     centerView: SC.ScrollView.design({
     	hasHorizontalScroller: NO,
-    	layout: {top: 36, bottom: 32, left: 0, right: 0},
+    	layout: {top: 36, bottom: 0, left: 0, right: 0},
     	backgroundColor: 'white',
     	contentView: SC.ListView.design({
     		contentBinding: 'SproutNews.itemController.arrangedObjects',

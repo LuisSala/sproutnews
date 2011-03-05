@@ -69,8 +69,8 @@ SproutNews.ContentPanel = SC.PanelPane.extend(SC.Animatable,
   theme: "pig"*/
 }); // end ContentPanel
 
-SproutNews.ContentPanel.generateWithLink = function(url) {
-	SC.Logger.log("Cenerating ContentPanel View for "+url);
+SproutNews.ContentPanel.generateWithContent = function(content) {
+	SC.Logger.log("Cenerating ContentPanel View");
   return SproutNews.ContentPanel.create({
     contentView: SC.View.design({
       childViews: "topToolbar front".w(),
@@ -106,8 +106,8 @@ SproutNews.ContentPanel.generateWithLink = function(url) {
         style: {
           "rotateY": "0deg"
         },
-        contentView: SC.WebView.design({
-        	value: url
+        contentView: SC.StaticContentView.design({
+        	"content": content
         }) // end contentView
       }) // end front
     })

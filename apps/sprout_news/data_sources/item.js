@@ -92,7 +92,7 @@ SproutNews.ItemDataSource = SC.DataSource.extend(
 				  title: item.title,
 				  link: url,
 				  author: item['dc:creator'],
-				  date: item['y:published']['month']+'-'+item['y:published']['day']+'-'+item['y:published']['year'],
+				  date: item['y:published']['month']+'/'+item['y:published']['day']+'/'+item['y:published']['year'],
 				  description: item.description,
 				  content: "Content Not Assigned"
 			  }, item.link+Math.floor(Math.random()*999999)).storeKey);

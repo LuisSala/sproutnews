@@ -9,6 +9,7 @@ div.custom-item-list-view h3.title {
 
 div.custom-item-list-view {
   padding-top: 4px;
+  padding-left: 6px;
   border-bottom-color: black;
   border-bottom-width: 1px;
   border-bottom-style: solid;

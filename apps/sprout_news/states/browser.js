@@ -12,7 +12,7 @@
   @version 0.1
 */
 
-require("state/DEFAULT");
+require("states/default");
 SproutNews.BROWSER = SC.Responder.create(
 /** @scope SproutNews.BROWSER.prototype */ {
 

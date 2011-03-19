@@ -13,7 +13,7 @@
 SproutNews.ContentPanel = SC.PanelPane.extend(SC.Animatable,
 /** @scope SproutNews.ContentPanel */ {
   modalPane: SC.ModalPane.extend(SC.Animatable, {
-    classNames: 'for-sc-panel',
+    /*classNames: 'for-sc-panel',*/
     transitions: {
       opacity: 0.25
     },
@@ -36,7 +36,6 @@ SproutNews.ContentPanel = SC.PanelPane.extend(SC.Animatable,
   
   style: { opacity: 0.0, transform: "scale3d(.1,.1,1)" },
   layout: { width: 250, height: 480 },
-  theme: "popover",
   
   append: function() {
     sc_super();
@@ -60,16 +59,13 @@ SproutNews.ContentPanel = SC.PanelPane.extend(SC.Animatable,
     this.modalPane.adjust("opacity", 0);
   }, // end remove()
   
-  classNames: "demo".w(),
   
   defaultResponder: SproutNews,
   layout: { top: 0, bottom: 0, width: 768, centerX: 0 },
   contentView: null,
-  /*isModal: YES,
-  theme: "pig"*/
 }); // end ContentPanel
 
-SproutNews.ContentPanel.generateWithContent = function(content) {
+SproutNews.ContentPanel.generateWithContent = function(content, title) {
 	SC.Logger.log("Cenerating ContentPanel View");
   return SproutNews.ContentPanel.create({
     contentView: SC.View.design({
@@ -82,21 +78,26 @@ SproutNews.ContentPanel.generateWithContent = function(content) {
 
 
       topToolbar: SC.ToolbarView.design({
-        layout: { top: 0, height: 44, left: 0, right: 0 },
-        childViews: "close".w(),
+        layout: { top: 0, height: 40, left: 0, right: 0 },
+        childViews: "close titleLabel".w(),
         close: SC.ButtonView.design({
-          layout: { left: 7, centerY: 0, height: 30, width: 100 },
+          layout: { right: 7, centerY: 0, height: 24, width: 100 },
           title: "Close",
-          action: "closeItem",
-          controlSize: SC.AUTO_CONTROL_SIZE,
-          isCancel: YES
+          action: "closeItem"
         }), // end close
+        
+        titleLabel: SC.LabelView.design({
+	    	  layout: { centerY: 0, height: 24, left: 7, width:700},
+	    	  controlSize: SC.LARGE_CONTROL_SIZE,
+	    	  fontWeight: SC.BOLD_WEIGHT,
+	    	  value: title
+	      }), // end titleLabel
 
       }), // end topToolbar
            
       front: SC.ScrollView.design(SC.Animatable, {
         //classNames: "flippable".w(),
-    	layout: {top: 44},
+    	layout: {top: 40},
     	
         transitions: {
           "transform": {

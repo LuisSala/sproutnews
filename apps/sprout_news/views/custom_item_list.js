@@ -81,7 +81,7 @@ SproutNews.CustomItemListView = SC.ListItemView.extend(SC.ContentDisplay, Sprout
 					content=this.get("content");
 					SC.Logger.log("Content: "+ content.get("link"));
 					SC.Logger.log("Sending openArticle Action");
-					SproutNews.sendAction("openArticle", content.get("link"));
+					SproutNews.sendAction("openArticle", content.get("link"), content.get("title"));
 				} // end if
 			} // end if
 		} // end if-else (Zoom/Swipe Detection
@@ -137,7 +137,7 @@ SproutNews.CustomItemListView = SC.ListItemView.extend(SC.ContentDisplay, Sprout
 		content=this.get("content");
 		SC.Logger.log("Content: "+ content.get("link"));
 		SC.Logger.log("Sending openArticle Action");
-		SproutNews.sendAction("openArticle", content.get("link"));
+		SproutNews.sendAction("openArticle", content.get("link"), content.get("title"));
 	}, // end tap()
 	
 	mouseDown: function(evt) {		

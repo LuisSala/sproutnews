@@ -33,9 +33,10 @@ SproutNews.DEFAULT = SC.Responder.create(
   //
   
   // add event handlers here
-  openArticle: function(url) {
+  openArticle: function(url, title) {
 	  SproutNews.newsBrowser.set("url", url);
-	  SC.Logger.log("DEFAULT Responder openArticle(): Opening panel for "+url);
+	  SproutNews.newsBrowser.set("pageTitle", title);
+	  SC.Logger.log("DEFAULT Responder openArticle(): Opening panel for "+url + "Title: " + title);
 	  SproutNews.makeFirstResponder(SproutNews.BROWSER);
   }, // end openArticle()
   

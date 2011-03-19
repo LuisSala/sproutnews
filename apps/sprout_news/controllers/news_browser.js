@@ -16,6 +16,8 @@ SproutNews.newsBrowser = SC.ObjectController.create(
   // TODO: Add your own code here.
 	url: null,
 	
+	pageTitle: null,
+	
 	openItem: function() {
 		
 		if (this._openItemPanel) {
@@ -51,7 +53,7 @@ SproutNews.newsBrowser = SC.ObjectController.create(
 			SC.Logger.log("Got Content " + content);
 		} // end if
 		
-		var itemPanel = SproutNews.ContentPanel.generateWithContent(content);
+		var itemPanel = SproutNews.ContentPanel.generateWithContent(content, this.pageTitle);
 	      itemPanel.append();
 	    this._openItemPanel = itemPanel;
 		

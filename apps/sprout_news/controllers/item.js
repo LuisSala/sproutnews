@@ -4,21 +4,17 @@
 // ==========================================================================
 /*globals SproutNews */
 
+
+
 /** @class
 
-  (Document Your Controller Here)
+(Document Your Controller Here)
 
-  @extends SC.ArrayController
+@extends SC.ObjectController
 */
-SproutNews.itemController = SC.ArrayController.create(
-	SC.CollectionViewDelegate,
-/** @scope SproutNews.itemController.prototype */ {
+SproutNews.itemController = SC.ObjectController.create(
+/** @scope SproutNews.itemsController.prototype */ {
 
-	/*openItem: function(url) {
-		//var sel = this.get('selection');
-    
-		SC.Logger.log("itemController Selection:" + sel);
-		return YES;
-	}*/
-
+// TODO: Add your own code here.
+	contentBinding: SC.Binding.from('SproutNews.itemsController.selection').single()
 }) ;

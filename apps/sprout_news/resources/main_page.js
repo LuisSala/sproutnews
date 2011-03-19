@@ -32,20 +32,23 @@ SproutNews.mainPage = SC.Page.design({
     }), // end topView
     
     centerView: SC.ScrollView.design({
+    	acceptsMultitouch: NO,
     	hasHorizontalScroller: NO,
     	layout: {top: 36, bottom: 0, left: 0, right: 0},
     	backgroundColor: 'white',
     	contentView: SC.ListView.design({
-    		contentBinding: 'SproutNews.itemController.arrangedObjects',
-    		selectionBinding: 'SproutNews.itemController.selection',
+    		acceptsMultitouch: NO,
+    		contentBinding: 'SproutNews.itemsController.arrangedObjects',
+    		selectionBinding: 'SproutNews.itemsController.selection',
     		contentValueKey: 'title',
     		exampleView: SproutNews.CustomItemListView, // use custom list view    		
     		rowHeight: 50,
     		rowSpacing: 10,
     		isSelectable: YES,
     		selectOnMouseDown: YES,
-    		target: "SproutNews.itemController",
-    		action: "openItem"
+    		target: "SproutNews.itemsController"/*,
+    		action: "openItem",
+    		actOnSelect: "openItem"*/
     	}) // end leftView.contentView
     	
     }), // end leftView

@@ -21,7 +21,7 @@ SproutNews.DEFAULT = SC.Responder.create(
   
   didBecomeFirstResponder: function() {
     // Called when this state becomes first responder
-	SproutNews.getPath("mainPage.mainPane.centerView.contentView.exampleView").acceptDrags=true;
+	SproutNews.getPath("mainPage.mainPane.centerView.contentView.exampleView").articleOpen=NO;
   },
   
   willLoseFirstResponder: function() {
@@ -37,6 +37,10 @@ SproutNews.DEFAULT = SC.Responder.create(
 	  SproutNews.newsBrowser.set("url", url);
 	  SC.Logger.log("DEFAULT Responder openArticle(): Opening panel for "+url);
 	  SproutNews.makeFirstResponder(SproutNews.BROWSER);
-  } // end openArticle()
+  }, // end openArticle()
+  
+  toggleSelected: function() {	  
+	  SproutNews.itemsController.toggleSelected();
+  }
   
 }) ;

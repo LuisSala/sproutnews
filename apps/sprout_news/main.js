@@ -29,7 +29,7 @@ SproutNews.main = function main() {
   
   //var items = SproutNews.store.find(SproutNews.Item);
   var items = SproutNews.store.find(SproutNews.ITEM_QUERY);
-  SproutNews.itemController.set('content', items)
+  SproutNews.itemsController.set('content', items)
   
 
 } ;

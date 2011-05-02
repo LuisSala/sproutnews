@@ -10,6 +10,9 @@
 
   @extends SC.ArrayController
 */
+
+// TODO: Two arraycontrollers left and right. Two template collectionviews and each array controller is bound to one.
+// look at TODOS app.
 SproutNews.itemsController = SC.ArrayController.create(
 	SC.CollectionViewDelegate,
 /** @scope SproutNews.itemController.prototype */ {

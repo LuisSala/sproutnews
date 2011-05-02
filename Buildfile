@@ -7,4 +7,4 @@
 config :all, :required => [:sproutcore, "sproutcore/animation"]
 
 proxy '/pipes/pipe.run', :to => 'pipes.yahoo.com'
-proxy '/read', :to => 'sc.sala.us:8000', :url => '/'
+proxy '/read', :to => 'localhost:8000', :url => '/'

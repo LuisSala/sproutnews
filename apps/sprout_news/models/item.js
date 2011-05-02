@@ -13,13 +13,26 @@
 */
 SproutNews.Item = SC.Record.extend(
 /** @scope SproutNews.Item.prototype */ {
+  // If attribute is not eplicitly defined in the Record then the value will be looked up from the dataHash and returned WITHOUT coercion. Still best to be explicit.
+  primaryKey: "link",
 
   title: SC.Record.attr(String),
+
+  //options hash can be used to define the mapping key.
   //date: SC.Record.attr(SC.DateTime, {format: 'YY-mm-dd'}),
-  date: SC.Record.attr(String),
-  author: SC.Record.attr(String),
+  publishedDate: SC.Record.attr(String, { key: 'y:published' }),
+
+  date: function(){
+      var published = this.get("publishedDate");
+      return published.month+'/'+published.day+'/'+published.year;
+  }.property().cacheable(),
+  author: SC.Record.attr(String, { key: 'dc:creator' }),
   link: SC.Record.attr(String),
-  description: SC.Record.attr(String),
-  content: SC.Record.attr(String)
+  description: SC.Record.attr(String, { key: 'description' }),
+  content: SC.Record.attr(String, { key: 'description' })
+  // TODO: Define guid or id property and map that to corresponding feed GUID
+
+  // TODO: Computed properties that pull things like the permalink, then make cacheable.
+  // all SC.Records have a dataHash property that cn be accessed via readAttribute
 
 }) ;

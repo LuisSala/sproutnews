@@ -26,7 +26,7 @@ SproutNews.mainPage = SC.Page.design({
     	  controlSize: SC.LARGE_CONTROL_SIZE,
     	  fontWeight: SC.BOLD_WEIGHT,
     	  value: 'News Reader'
-      }), // end lblTitle
+      }) // end lblTitle
       
       
     }), // end topView

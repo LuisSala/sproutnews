@@ -1,7 +1,13 @@
 =============================================================================
 Project:   SproutNews
-Copyright: ©2011 My Company, Inc.
+Copyright: ©2011 Strobe, Inc.
 =============================================================================
 
 TODO: Describe Your Project
 
+Basic news reader with touch gesture support.
+
+Retrieves JSON feed from a Yahoo! Pipe and displays in a custom ListView wrapped inside a ScrollView.
+
+Double-clicking/tapping on a news item opens a Panel containing the content which, in this case, is passed through
+a Readability server written in Node.JS.

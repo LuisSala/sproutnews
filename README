@@ -11,3 +11,6 @@ Retrieves JSON feed from a Yahoo! Pipe and displays in a custom ListView wrapped
 
 Double-clicking/tapping on a news item opens a Panel containing the content which, in this case, is passed through
 a Readability server written in Node.JS.
+
+The readability server needs to be run:
+$ node node-readability/test/clean-proxy.js

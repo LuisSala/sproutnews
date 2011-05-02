@@ -27,7 +27,7 @@ SproutNews.Item = SC.Record.extend(
       return published.month+'/'+published.day+'/'+published.year;
   }.property().cacheable(),
   author: SC.Record.attr(String, { key: 'dc:creator' }),
-  link: SC.Record.attr(String),
+  link: SC.Record.attr(String, {key:'feedburner:origLink'}),
   description: SC.Record.attr(String, { key: 'description' }),
   content: SC.Record.attr(String, { key: 'description' })
   // TODO: Define guid or id property and map that to corresponding feed GUID

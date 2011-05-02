@@ -28,7 +28,7 @@ SproutNews.ItemDataSource = SC.DataSource.extend(
     // TODO: Add handlers to fetch data for specific queries.  
     // call store.dataSourceDidFetchQuery(query) when done.
 
-	SC.Request.getUrl('/pipes/pipe.run?_id=cfe79b93ed2e40b787f985c48c28826e&_render=json&url=http%3A%2F%2Fwww.wired.com').header({'Accept':'application/json'}).json().notify(this, 'didFetchFeed', store, query).send();
+	SC.Request.getUrl(SproutNews.DEFAULT_FEED).header({'Accept':'application/json'}).json().notify(this, 'didFetchFeed', store, query).send();
 	
     return YES ; // return YES if you handled the query
   },

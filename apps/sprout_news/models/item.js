@@ -20,11 +20,11 @@ SproutNews.Item = SC.Record.extend(
 
   //options hash can be used to define the mapping key.
   //date: SC.Record.attr(SC.DateTime, {format: 'YY-mm-dd'}),
-  publishedDate: SC.Record.attr(String, { key: 'y:published' }),
+  publishedDate: SC.Record.attr(Object, { key: 'y:published' }),
 
   date: function(){
       var published = this.get("publishedDate");
-      return published.month+'/'+published.day+'/'+published.year;
+      return published['month']+'/'+published['day']+'/'+published['year'];
   }.property().cacheable(),
   author: SC.Record.attr(String, { key: 'dc:creator' }),
   link: SC.Record.attr(String, {key:'feedburner:origLink'}),

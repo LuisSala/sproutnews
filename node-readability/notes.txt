@@ -1,0 +1,67 @@
+# live NodeList
+NodeLists returned by node.childNodes and getElementsByXxx() apis are live which means changes to the DOM tree will be reflected in the NodeList when accessed.
+
+In jsdom's implementation, a live NodeList is updated when item() or length is accessed but not when the [index] is accessed.
+In a live NodeList iteration, you must carefully call list.update() (or just list.length) to trigger an update.
+Beware that NodeList update is very expensive! When possible, prefer DOM transversal over getElementsByXxx();
+
+If no changes will be made the the subtree, it is a good idea to iterate over an Array. 
+var arr = nodeList.toArray(); //toArray() is not in the standards
+var arr = Array.prototype.slice.call(nodeList);
+
+# nodeList._length
+WRONG: In jsom the length getter property of a NodeList calls .update() which re-query against the DOM tree. In a read only loop, it is more efficient to access ._length instead of .length.
+var nodes = ele.getElementsByTagName('div'), i, len;
+for (i = 0, len = nodes._length; i < len, i++) {
+    //does not change the dom structure
+}
+childNodes._length may not be update to date!!!!!
+
+# .textContent
+readability.getInnerText is very frequently used function. My optimization for it reduced the total running time by half. 
+// hundredfold faster
+// use native string.trim
+// jsdom's implementation of textContent is innerHTML + strip tags + HTMLDecode
+// here we replace it with an optimized tree walker
+
+# cleanStyles
+cleanStyles is recursive, it counts for most running time of prepArticle
+
+# security
+arbitrary js
+frames
+
+# performance
+grep TOTAL clean.log|cut -d ' ' -f5|sort -n
+
+irb>
+s = <<EOT
+...
+EOT
+a = s.split("\n").map(&:to_f)
+avg = a.reduce{|x,y| x+y} / a.size
+def hist(array)
+  
+end
+
+
+def avg(s, regex) 
+    a = s.scan(regex).flatten.map(&:to_f)
+    a.reduce{|x,y| x+y}/a.size
+end
+
+# sum profiler output
+s = <<EOT
+19 Nov 12:56:08 -       0.233 seconds [killBreaks] 
+19 Nov 12:56:08 -       0.069 seconds [cleanConditionally] 
+19 Nov 12:56:09 -       0.071 seconds [clean] 
+19 Nov 12:56:09 -       0.074 seconds [clean] 
+19 Nov 12:56:09 -       0.068 seconds [clean] 
+19 Nov 12:56:09 -       0.139 seconds [cleanHeaders] 
+19 Nov 12:56:09 -       0.241 seconds [cleanConditionally] 
+19 Nov 12:56:09 -       0.088 seconds [cleanConditionally] 
+19 Nov 12:56:09 -       0.233 seconds [cleanConditionally] 
+19 Nov 12:56:10 -       0.507 seconds [prepArticle Remove extra paragraphs] 
+19 Nov 12:56:11 -       0.568 seconds [prepArticle innerHTML replacement]
+EOT
+s.scan(/\s([.\d]+)\s+seconds/).flatten.map(&:to_f).reduce{|a,b|a+b}
